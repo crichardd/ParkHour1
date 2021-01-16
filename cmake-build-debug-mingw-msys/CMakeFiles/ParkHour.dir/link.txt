@@ -1,0 +1,3 @@
+"D:\2A3\Language C\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\ParkHour.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe cr CMakeFiles\ParkHour.dir/objects.a @CMakeFiles\ParkHour.dir\objects1.rsp
+C:\msys64\mingw64\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\ParkHour.dir/objects.a -Wl,--no-whole-archive  -o ParkHour.exe -Wl,--out-implib,libParkHour.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ParkHour.dir\linklibs.rsp

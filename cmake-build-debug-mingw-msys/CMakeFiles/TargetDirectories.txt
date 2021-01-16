@@ -1,0 +1,3 @@
+C:/Users/olivi/CLionProjects/ParkHour/cmake-build-debug-mingw-msys/CMakeFiles/ParkHour.dir
+C:/Users/olivi/CLionProjects/ParkHour/cmake-build-debug-mingw-msys/CMakeFiles/edit_cache.dir
+C:/Users/olivi/CLionProjects/ParkHour/cmake-build-debug-mingw-msys/CMakeFiles/rebuild_cache.dir
