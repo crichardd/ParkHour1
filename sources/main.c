@@ -20,26 +20,6 @@ int main(int argc, char **argv) {
     GtkWidget       *button;
     GtkWidget       *tab[2];
 
-    //CONNECTION BDD
-
-    MYSQL mysql;
-
-    char query[256];
-
-
-    mysql_init(&mysql);
-   // mysql_options(mysql,MYSQL_READ_DEFAULT_GROUP,"option");
-
-    if(mysql_real_connect(&mysql, "localhost", "root", "root", "parkhour", 3306, NULL, 0))
-    {
-        printf("bdd ok!\n");
-
-        strcpy(query, "insert into usager (matricule, pwd, nom, prenom, poste, type) VALUES ('2', 'Chlochlo77', 'richard', 'chloe', 'infirmier', '1')");
-        mysql_query(&mysql, query);
-        mysql_close(&mysql);
-
-        //return 1;
-    }
 
     // AFFICHER accueil
 
@@ -54,10 +34,10 @@ int main(int argc, char **argv) {
     tab[1] = GTK_WIDGET(gtk_builder_get_object(builder, "pwd")); //revoir widget
 
     printf("%p %p**\n", tab[0], tab[1] );
+    //printf("%s \n", gtk_widget_show( tab[0]));
 
     gtk_builder_connect_signals(builder, NULL); //charger des signals depuis de builder
     g_signal_connect(button, "clicked", G_CALLBACK(NextFile), tab); //NULL --> passer une @ddr
-
 
     g_object_unref(builder); //retirer de la mémoire / avant de lancer la callback
 
