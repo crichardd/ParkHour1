@@ -48,6 +48,18 @@ C:/Users/olivi/CLionProjects/ParkHour/sources/function.c
 function.h
 -
 
+C:/Users/olivi/CLionProjects/ParkHour/sources/main.c
+stdio.h
+-
+stdlib.h
+-
+gtk/gtk.h
+-
+mysql/mysql.h
+-
+function.h
+-
+
 C:/msys64/mingw64/include/atk-1.0/atk/atk-enum-types.h
 atk/atkversion.h
 -

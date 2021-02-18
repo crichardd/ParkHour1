@@ -53,20 +53,21 @@ void NextFile(GtkButton button, gpointer tab){
 
     if(strcmp(gtk_entry_get_text(GTK_ENTRY(pwd)), try[0]) == 0){
         printf("mdp ok\n");
-        indexWindow(try[1], try[2]);
+        indexWindow(try[1], try[2], matricule);
     } else {
         printf("mdp not ok\n");
     }
 
 }
 
-void indexWindow(char *lastName, char *firstName){
+void indexWindow(char *lastName, char *firstName, GtkWidget *matricule){
 
     gtk_widget_hide(env.window); //cache window
     gtk_widget_show(env.index);
 
     writeName(lastName, firstName);
     printDate();
+    futureMove(matricule);
 
 }
 void writeName(char *lastName, char *firstName){
@@ -90,7 +91,6 @@ void printDate(){
     char *timeToStr;
     time_t now;
 
-
     Tdate = malloc(sizeof(char)*256);
     timeToStr = malloc(sizeof(char)*10);
 
@@ -111,9 +111,41 @@ void printDate(){
     strcat(Tdate, timeToStr);
 
     gtk_label_set_text(env.todayDate, Tdate);
-
 }
 
+void futureMove(GtkWidget *matricule){
+
+    char query[256];
+    MYSQL mysql;
+    MYSQL_RES *info_all;
+    MYSQL_ROW stock;
+    char *data;
+
+    data = malloc(sizeof(char)*256);
+
+    if(connec_bdd(&mysql)){
+        strcpy(query, "SELECT dateDebut, heureDebut, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE participant.matricule = ");
+        strcat(query, gtk_entry_get_text(GTK_ENTRY (matricule)));
+        mysql_query(&mysql, query);
+
+        info_all = mysql_store_result(&mysql);
+        if(info_all){
+            stock = mysql_fetch_row( info_all);
+        }else{
+            printf("ALED");
+        }
+
+        strcpy(data, stock[0]);
+        strcat(data, "\n");
+        strcat(data, stock[1]);
+        strcat(data, "\n");
+        strcat(data, stock[2]);
+
+        gtk_label_set_text(env.after, data);
+
+        mysql_close(&mysql);
+    }
+}
 void gladeLoader(){
 
     env.builder = gtk_builder_new();
@@ -128,7 +160,9 @@ void gladeLoader(){
     //fenetre 2
     env.index = GTK_WIDGET(gtk_builder_get_object(env.builder, "window_index"));//appel la page window_index
     env.name = GTK_LABEL(gtk_builder_get_object(env.builder, "nameLabel")); //le label
-    env.todayDate = GTK_LABEL(gtk_builder_get_object(env.builder, "dateLabel"));//appel la page window_index
+    env.todayDate = GTK_LABEL(gtk_builder_get_object(env.builder, "dateLabel"));
+    env.after = GTK_LABEL(gtk_builder_get_object(env.builder, "after"));
+    env.before = GTK_LABEL(gtk_builder_get_object(env.builder, "before"));
 
     gtk_builder_connect_signals(env.builder, NULL); //charger des signals depuis de builder
     g_signal_connect(env.button, "clicked", G_CALLBACK(NextFile), env.tab); //NULL --> passer une @ddr

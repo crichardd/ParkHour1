@@ -18,6 +18,8 @@ typedef struct {
     GtkWidget       *tab[2];
     GtkLabel        *name;
     GtkLabel        *todayDate;
+    GtkLabel        *after;
+    GtkLabel        *before;
 
 } gtkStruct;
 
@@ -26,7 +28,8 @@ typedef struct {
 void NextFile(GtkButton button, gpointer user_data);
 void writeName();
 void gladeLoader();
-void indexWindow(char *lastName, char *firstName);
+void indexWindow(char *lastName, char *firstName, GtkWidget *matricule);
 void printDate();
+void futureMove();
 
 #endif //PARKHOUR_FUNCTION_H
