@@ -11,6 +11,8 @@ gtk/gtk.h
 -
 mysql/mysql.h
 -
+stdlib.h
+-
 
 ../includes/mysql/ma_list.h
 
