@@ -4,6 +4,8 @@
 
 #include <function.h>
 
+#define RAPPORTFILENAME "rapport.txt"
+
 gtkStruct env;
 
 // Creation fonction connexion bdd avec return
@@ -68,6 +70,9 @@ void indexWindow(char *lastName, char *firstName, GtkWidget *matricule){
     writeName(lastName, firstName);
     printDate();
     futureMove(matricule);
+    ancienMove(matricule);
+    exportFile();
+    exitApp();
 
 }
 void writeName(char *lastName, char *firstName){
@@ -124,15 +129,53 @@ void futureMove(GtkWidget *matricule){
     data = malloc(sizeof(char)*256);
 
     if(connec_bdd(&mysql)){
-        strcpy(query, "SELECT dateDebut, heureDebut, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE participant.matricule = ");
+        strcpy(query, "SELECT dateDebut, heureDebut, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE dateDebut>NOW() AND participant.matricule = ");
         strcat(query, gtk_entry_get_text(GTK_ENTRY (matricule)));
+        strcat(query, " ORDER BY dateDebut ASC");
+        mysql_query(&mysql, query);
+
+        info_all = mysql_store_result(&mysql);
+        printf("nb row: %d", (int)mysql_num_rows(info_all));
+        if(info_all){
+            stock = mysql_fetch_row( info_all );
+            strcpy(data, stock[0]);
+            strcat(data, "\n");
+            strcat(data, stock[1]);
+            strcat(data, "\n");
+            strcat(data, stock[2]);
+            strcat(data, "\n");
+
+            gtk_label_set_text(env.after, data);
+
+        }else{
+            printf("Pas ok");
+        }
+
+        mysql_close(&mysql);
+    }
+}
+
+void ancienMove(GtkWidget *matricule){
+
+    char query[256];
+    MYSQL mysql;
+    MYSQL_RES *info_all;
+    MYSQL_ROW stock;
+    char *data;
+
+    data = malloc(sizeof(char)*256);
+
+    if(connec_bdd(&mysql)){
+        strcpy(query, "SELECT dateDebut, heureDebut, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE dateDebut<NOW() AND participant.matricule = ");
+        strcat(query, gtk_entry_get_text(GTK_ENTRY (matricule)));
+        strcat(query, " ORDER BY dateDebut ASC");
         mysql_query(&mysql, query);
 
         info_all = mysql_store_result(&mysql);
         if(info_all){
             stock = mysql_fetch_row( info_all);
         }else{
-            printf("ALED");
+            printf("Pas ok");
         }
 
         strcpy(data, stock[0]);
@@ -141,10 +184,92 @@ void futureMove(GtkWidget *matricule){
         strcat(data, "\n");
         strcat(data, stock[2]);
 
-        gtk_label_set_text(env.after, data);
+        gtk_label_set_text(env.before, data);
 
         mysql_close(&mysql);
     }
+
+}
+
+int getNumberVehicule(){
+    FILE *fp;
+    char buffer;
+    int count;
+
+    fp = fopen(RAPPORTFILENAME, "rb");
+
+    if(fp)
+    {
+        count = 0;
+        while(fread(&buffer, sizeof(char), 1, fp), !feof(fp))
+        {
+            if(buffer == '\n')
+                count++;
+        }
+
+        fclose(fp);
+        return count;
+    }
+
+    fclose(fp);
+    return -1;
+}
+
+G_MODULE_EXPORT void exportFile(){
+
+    char query[256];
+    MYSQL mysql;
+    MYSQL_RES *info_all;
+    MYSQL_ROW row;
+    char *data;
+    FILE *fp;
+    int countVehicle;
+    char txtCountVehicle[10];
+
+    countVehicle = getNumberVehicule();
+    if(countVehicle == -1)
+        return;
+
+    countVehicle ++;
+    itoa(countVehicle, txtCountVehicle, 10);
+
+    data = malloc(sizeof(char)*256);
+
+    if(connec_bdd(&mysql)){
+
+        strcpy(query, "SELECT immatriculation, type, kilometrage, observation, revision FROM vehicules ORDER BY revision ASC");
+        mysql_query(&mysql, query);
+
+        fp = fopen(RAPPORTFILENAME, "a");
+
+        if(fp){
+
+            printf("chk trigger!\n");
+            info_all = mysql_store_result(&mysql);
+
+            if(info_all){
+                row = mysql_fetch_row( info_all);
+                fprintf(fp, "Vehicule: %s | ", txtCountVehicle + 1);
+                fprintf(fp, " %s |", row[0]);
+                fprintf(fp, " %s |", row[1]);
+                fprintf(fp, " %s |", row[2]);
+                fprintf(fp, " %s |", row[3]);
+                fprintf(fp, " %s |", row[4]);
+            }else{
+                printf("Pas ok");
+            }
+
+        }
+      //  gtk_label_set_text(env.export, ro);
+
+        fclose(fp);
+        mysql_close(&mysql);
+    }
+}
+
+void exitApp(){
+    gtk_widget_hide(env.index); //cache window
+    gtk_widget_show(env.window);
 }
 void gladeLoader(){
 
@@ -163,12 +288,15 @@ void gladeLoader(){
     env.todayDate = GTK_LABEL(gtk_builder_get_object(env.builder, "dateLabel"));
     env.after = GTK_LABEL(gtk_builder_get_object(env.builder, "after"));
     env.before = GTK_LABEL(gtk_builder_get_object(env.builder, "before"));
+    env.export = GTK_LABEL(gtk_builder_get_object(env.builder, "export"));
+    env.deco = GTK_LABEL(gtk_builder_get_object(env.builder, "deco"));
 
     gtk_builder_connect_signals(env.builder, NULL); //charger des signals depuis de builder
     g_signal_connect(env.button, "clicked", G_CALLBACK(NextFile), env.tab); //NULL --> passer une @ddr
 
     g_object_unref(env.builder); //retirer de la mémoire / avant de lancer la callback
 }
+
 
 /*
  // Creation fonction connexion bdd avec return

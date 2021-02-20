@@ -5,6 +5,8 @@
 #ifndef PARKHOUR_FUNCTION_H
 #define PARKHOUR_FUNCTION_H
 
+#define G_MODULE_EXPORT __declspec(dllexport)
+
 #include <gtk/gtk.h>
 #include <mysql/mysql.h>
 #include <stdlib.h>
@@ -20,6 +22,10 @@ typedef struct {
     GtkLabel        *todayDate;
     GtkLabel        *after;
     GtkLabel        *before;
+    GtkWidget        *export;
+    GtkWidget        *deco;
+
+
 
 } gtkStruct;
 
@@ -30,6 +36,10 @@ void writeName();
 void gladeLoader();
 void indexWindow(char *lastName, char *firstName, GtkWidget *matricule);
 void printDate();
-void futureMove();
+void futureMove(matricule);
+void ancienMove(matricule);
+void exportFile();
+int getNumberVehicule();
+void exitApp();
 
 #endif //PARKHOUR_FUNCTION_H
