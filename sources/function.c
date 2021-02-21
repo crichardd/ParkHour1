@@ -132,9 +132,9 @@ void futureMove(GtkWidget *matricule){
     data = malloc(sizeof(char)*256);
 
     if(connec_bdd(&mysql)){
-        strcpy(query, "SELECT dateDebut, heureDebut, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE dateDebut>NOW() AND participant.matricule = ");
+        strcpy(query, "SELECT debut, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE debut>NOW() AND participant.matricule = ");
         strcat(query, gtk_entry_get_text(GTK_ENTRY (matricule)));
-        strcat(query, " ORDER BY dateDebut ASC");
+        strcat(query, " ORDER BY debut ASC");
         mysql_query(&mysql, query);
 
         info_all = mysql_store_result(&mysql);
@@ -143,8 +143,6 @@ void futureMove(GtkWidget *matricule){
             strcpy(data, stock[0]);
             strcat(data, "\n");
             strcat(data, stock[1]);
-            strcat(data, "\n");
-            strcat(data, stock[2]);
             strcat(data, "\n");
 
             gtk_label_set_text(env.after, data);
@@ -168,9 +166,9 @@ void ancienMove(GtkWidget *matricule){
     data = malloc(sizeof(char)*256);
 
     if(connec_bdd(&mysql)){
-        strcpy(query, "SELECT dateDebut, heureDebut, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE dateDebut<NOW() AND participant.matricule = ");
+        strcpy(query, "SELECT debut, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE debut<NOW() AND participant.matricule = ");
         strcat(query, gtk_entry_get_text(GTK_ENTRY (matricule)));
-        strcat(query, " ORDER BY dateDebut ASC");
+        strcat(query, " ORDER BY debut ASC");
         mysql_query(&mysql, query);
 
         info_all = mysql_store_result(&mysql);
@@ -184,7 +182,6 @@ void ancienMove(GtkWidget *matricule){
         strcat(data, "\n");
         strcat(data, stock[1]);
         strcat(data, "\n");
-        strcat(data, stock[2]);
 
         gtk_label_set_text(env.before, data);
 
@@ -264,15 +261,12 @@ void searchPlanning(GtkButton *search, gpointer tab){
     MYSQL_RES *info_all;
     MYSQL_ROW try;
 
-    GtkWidget **tab2= (GtkWidget**)tab;
-
-    GtkWidget *vehicule = ((GtkWidget**) tab)[0];
-    GtkWidget *date = ((GtkWidget**) tab)[1];
+    GtkWidget **searching= (GtkWidget**)tab;
 
     if(connec_bdd(&mysql)){
-        strcpy(query, "SELECT dateDebut, heureDebut, dateFin, HeureFin FROM deplacement WHERE vehicule = ");
+        strcpy(query, "SELECT debut, fin FROM deplacement WHERE vehicule = '");
         strcat(query, gtk_entry_get_text(GTK_ENTRY (env.carName)));
-        mysql_query(&mysql, query);
+        strcat(query, " '");
 
         info_all = mysql_store_result(&mysql);
         if(info_all){
@@ -285,6 +279,10 @@ void searchPlanning(GtkButton *search, gpointer tab){
         mysql_close(&mysql);
     }
 }
+/*
+    GtkWidget *vehicule = ((GtkWidget**) tab)[0];
+    GtkWidget *date = ((GtkWidget**) tab)[1];
+*/
 
 void gladeLoader(){
 
