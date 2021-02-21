@@ -24,22 +24,24 @@ typedef struct {
     GtkLabel        *before;
     GtkWidget        *export;
     GtkWidget        *deco;
-
-
+    GtkWidget        *carDate;
+    GtkWidget        *carName;
+    GtkWidget        *search;
+    GtkWidget       *searching[2];
+    GtkLabel        *test;
 
 } gtkStruct;
-
-
 
 void NextFile(GtkButton button, gpointer user_data);
 void writeName();
 void gladeLoader();
 void indexWindow(char *lastName, char *firstName, GtkWidget *matricule);
 void printDate();
-void futureMove(matricule);
-void ancienMove(matricule);
-void exportFile();
+void futureMove(GtkWidget *matricule);
+void ancienMove(GtkWidget *matricule);
+G_MODULE_EXPORT void exportFile();
 int getNumberVehicule();
-void exitApp();
+G_MODULE_EXPORT void exitApp();
+void searchPlanning(GtkButton *search, gpointer tab);
 
 #endif //PARKHOUR_FUNCTION_H

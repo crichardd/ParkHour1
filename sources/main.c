@@ -6,14 +6,6 @@
 
 extern gtkStruct env;
 
-void abcd(GtkWidget *object, gpointer user_data)
-{
-    int *i = (int*)user_data;
-    gtk_main_quit();
-
-    printf("%d", *i);
-}
-
 
 int main(int argc, char **argv) {
 
@@ -21,7 +13,8 @@ int main(int argc, char **argv) {
 
     gtk_init(&argc, &argv);
 
-    printf("%p %p**\n", env.tab[0], env.tab[1] );
+    printf("%p %p**\n", env.tab[0], env.tab[1]);
+    printf("%p %p**\n", env.searching[0], env.searching[1]);
     //printf("%s \n", gtk_widget_show( tab[0]));
 
     gladeLoader();
