@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.38.1 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
-  <object class="GtkWindow">
+  <object class="GtkWindow" id="dateWindow">
     <property name="can-focus">False</property>
     <child>
       <object class="GtkBox">

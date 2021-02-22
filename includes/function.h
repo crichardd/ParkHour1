@@ -29,6 +29,7 @@ typedef struct {
     GtkWidget        *search;
     GtkWidget       *searching[2];
     GtkLabel        *test;
+    GtkWidget        *plannigPlage;
 
 } gtkStruct;
 
@@ -43,5 +44,6 @@ G_MODULE_EXPORT void exportFile();
 int getNumberVehicule();
 G_MODULE_EXPORT void exitApp();
 void searchPlanning(GtkButton *search, gpointer tab);
+char *orgaDate(char *recupDate);
 
 #endif //PARKHOUR_FUNCTION_H

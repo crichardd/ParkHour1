@@ -269,17 +269,12 @@ void searchPlanning(GtkButton *search, gpointer tab){
     MYSQL mysql;
     MYSQL_RES *info_all;
     MYSQL_ROW try;
-    int day, month, years;
     char *Tdate;
-    char *timeToStr;
-    time_t now;
-
-    time(&now);
-    // Convertir au format heure locale
-    struct tm *local = localtime(&now);
+    char *structDate;
+    char * recupDate ;
 
     Tdate = malloc(sizeof(char)*256);
-    timeToStr = malloc(sizeof(char)*10);
+    structDate = malloc(sizeof(char)*256);
 
     GtkWidget **searching= (GtkWidget**)tab;
 
@@ -297,12 +292,81 @@ void searchPlanning(GtkButton *search, gpointer tab){
                 gtk_label_set_text(env.test, try[0]);
             }
         }
+        recupDate = try[0];
+        structDate = orgaDate(recupDate);
+        Tdate = printDate();
+        if(structDate != Tdate)
+            printf("1");
+        else
+            printf("0");
         mysql_close(&mysql);
     }
 
    // if(try[0] != ){
 
     //}
+}
+
+char *orgaDate(char *recupDate){
+
+    printf("%s\n", recupDate);
+    char *nextSeparator;
+    int positionRecupDate;
+    int year;
+    char stockDate[3][5];
+    int dateCategory;
+    char * totalDate;
+    totalDate = malloc(sizeof(char)*256);
+
+    positionRecupDate = 0;
+
+    while(recupDate[positionRecupDate] != ' ')
+        positionRecupDate++;
+
+    recupDate[positionRecupDate] = '\0';
+
+    printf("%s\n", recupDate);
+
+    dateCategory = 0;
+    positionRecupDate = 0 ;
+
+    while(recupDate[positionRecupDate] != '\0'){
+
+        if(recupDate[positionRecupDate] == '-'){
+            strncpy(stockDate[dateCategory], recupDate, positionRecupDate);
+            stockDate[dateCategory][positionRecupDate] = '\0';
+            strcpy(recupDate, recupDate + positionRecupDate + 1);
+
+            positionRecupDate = 0;
+            dateCategory++;
+        }
+        positionRecupDate++;
+    }
+
+    strncpy(stockDate[dateCategory], recupDate, positionRecupDate);
+    stockDate[dateCategory][positionRecupDate] = '\0';
+
+    printf("year: %s\n", stockDate[0]);
+    printf("month: %s\n", stockDate[1]);
+    printf("day: %s\n", stockDate[2]);
+
+    strcpy(totalDate, stockDate[0]);
+    strcat(totalDate, "/");
+    strcat(totalDate, stockDate[1]);
+    strcat(totalDate, "/");
+    strcat(totalDate, stockDate[1]);
+    strcat(totalDate, "\n");
+
+    printf ("%s", totalDate);
+
+    gtk_grid_attach(env.plannigPlage,
+                 GtkWidget *child,
+                 gint left,
+                 gint top,
+                 gint width,
+                 gint height);
+    return totalDate;
+
 }
 /*
     GtkWidget *vehicule = ((GtkWidget**) tab)[0];
@@ -332,6 +396,7 @@ void gladeLoader(){
     env.carDate = GTK_WIDGET(gtk_builder_get_object(env.builder, "carDate"));
     env.search = GTK_WIDGET(gtk_builder_get_object(env.builder, "search"));
     env.test = GTK_LABEL(gtk_builder_get_object(env.builder, "test"));
+    env.plannigPlage = GTK_GRID(gtk_builder_get_object(env.builder, "plannigPlage"));
 
     gtk_builder_connect_signals(env.builder, NULL); //charger des signals depuis de builder
     g_signal_connect(env.button, "clicked", G_CALLBACK(NextFile), env.tab); //NULL --> passer une @ddr
