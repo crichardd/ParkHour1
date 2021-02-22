@@ -36,7 +36,7 @@ void NextFile(GtkButton button, gpointer user_data);
 void writeName();
 void gladeLoader();
 void indexWindow(char *lastName, char *firstName, GtkWidget *matricule);
-void printDate();
+char *printDate();
 void futureMove(GtkWidget *matricule);
 void ancienMove(GtkWidget *matricule);
 G_MODULE_EXPORT void exportFile();

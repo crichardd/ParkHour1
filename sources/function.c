@@ -69,8 +69,15 @@ void indexWindow(char *lastName, char *firstName, GtkWidget *matricule){
     gtk_widget_hide(env.window); //cache window
     gtk_widget_show(env.index);
 
+    char *Tdate;
+
+    Tdate = malloc(sizeof(char)*256);
+
     writeName(lastName, firstName);
-    printDate();
+    Tdate = printDate();
+
+    gtk_label_set_text(env.todayDate, Tdate);
+
     futureMove(matricule);
     ancienMove(matricule);
    // exportFile();
@@ -92,7 +99,7 @@ void writeName(char *lastName, char *firstName){
 
 }
 
-void printDate(){
+char *printDate(){
 
     int day, month, years;
     char *Tdate;
@@ -118,7 +125,9 @@ void printDate(){
     itoa(years, timeToStr, 10);
     strcat(Tdate, timeToStr);
 
-    gtk_label_set_text(env.todayDate, Tdate);
+    //gtk_label_set_text(env.todayDate, Tdate);
+
+    return Tdate;
 }
 
 void futureMove(GtkWidget *matricule){
@@ -260,13 +269,25 @@ void searchPlanning(GtkButton *search, gpointer tab){
     MYSQL mysql;
     MYSQL_RES *info_all;
     MYSQL_ROW try;
+    int day, month, years;
+    char *Tdate;
+    char *timeToStr;
+    time_t now;
+
+    time(&now);
+    // Convertir au format heure locale
+    struct tm *local = localtime(&now);
+
+    Tdate = malloc(sizeof(char)*256);
+    timeToStr = malloc(sizeof(char)*10);
 
     GtkWidget **searching= (GtkWidget**)tab;
 
     if(connec_bdd(&mysql)){
         strcpy(query, "SELECT debut, fin FROM deplacement WHERE vehicule = '");
         strcat(query, gtk_entry_get_text(GTK_ENTRY (env.carName)));
-        strcat(query, " '");
+        strcat(query, "'");
+        mysql_query(&mysql, query);
 
         info_all = mysql_store_result(&mysql);
         if(info_all){
@@ -278,6 +299,10 @@ void searchPlanning(GtkButton *search, gpointer tab){
         }
         mysql_close(&mysql);
     }
+
+   // if(try[0] != ){
+
+    //}
 }
 /*
     GtkWidget *vehicule = ((GtkWidget**) tab)[0];
