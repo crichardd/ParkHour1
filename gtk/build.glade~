@@ -350,7 +350,6 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                   <object class="GtkEntry" id="carDate">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
-                    <property name="editable">False</property>
                     <property name="placeholder-text" translatable="yes">Date</property>
                   </object>
                   <packing>
@@ -381,7 +380,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
             </child>
             <child>
               <!-- n-columns=8 n-rows=15 -->
-              <object class="GtkGrid">
+              <object class="GtkGrid" id="planningPlage">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>

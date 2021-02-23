@@ -281,8 +281,11 @@ void searchPlanning(GtkButton *search, gpointer tab){
     if(connec_bdd(&mysql)){
         strcpy(query, "SELECT debut, fin FROM deplacement WHERE vehicule = '");
         strcat(query, gtk_entry_get_text(GTK_ENTRY (env.carName)));
-        strcat(query, "'");
+        strcat(query, "' AND '");
+        strcat(query, gtk_entry_get_text(GTK_ENTRY (env.carDate)));
+        strcat(query, "'>=NOW()");
         mysql_query(&mysql, query);
+        printf("%s\n", query);
 
         info_all = mysql_store_result(&mysql);
         if(info_all){
@@ -292,6 +295,7 @@ void searchPlanning(GtkButton *search, gpointer tab){
                 gtk_label_set_text(env.test, try[0]);
             }
         }
+
         recupDate = try[0];
         structDate = orgaDate(recupDate);
         Tdate = printDate();
@@ -350,22 +354,22 @@ char *orgaDate(char *recupDate){
     printf("month: %s\n", stockDate[1]);
     printf("day: %s\n", stockDate[2]);
 
-    strcpy(totalDate, stockDate[0]);
+    strcpy(totalDate, stockDate[2]);
     strcat(totalDate, "/");
     strcat(totalDate, stockDate[1]);
     strcat(totalDate, "/");
-    strcat(totalDate, stockDate[1]);
+    strcat(totalDate, stockDate[0]);
     strcat(totalDate, "\n");
 
     printf ("%s", totalDate);
-
+/*
     gtk_grid_attach(env.plannigPlage,
                  GtkWidget *child,
                  gint left,
                  gint top,
                  gint width,
                  gint height);
-    return totalDate;
+    return totalDate;*/
 
 }
 /*
