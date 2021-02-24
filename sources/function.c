@@ -198,30 +198,6 @@ void ancienMove(GtkWidget *matricule){
     }
 
 }
-/*
-int getNumberVehicule(){
-    FILE *fp;
-    char buffer;
-    int count;
-
-    fp = fopen(RAPPORTFILENAME, "rb");
-
-    if(fp)
-    {
-        count = 0;
-        while(fread(&buffer, sizeof(char), 1, fp), !feof(fp))
-        {
-            if(buffer == '\n')
-                count++;
-        }
-
-        fclose(fp);
-        return count;
-    }
-
-    fclose(fp);
-    return -1;
-}*/
 
 G_MODULE_EXPORT void exportFile(){
 
@@ -273,19 +249,20 @@ void searchPlanning(GtkButton *search, gpointer tab){
     char *structDate;
     char * recupDate ;
 
-    Tdate = malloc(sizeof(char)*256);
-    structDate = malloc(sizeof(char)*256);
-
-    GtkWidget **searching= (GtkWidget**)tab;
+    Tdate = orgaDate( (char *)gtk_entry_get_text(GTK_ENTRY (env.carDate)));
+    printf("%s", Tdate);
 
     if(connec_bdd(&mysql)){
+        printf("%s", Tdate);
         strcpy(query, "SELECT debut, fin FROM deplacement WHERE vehicule = '");
         strcat(query, gtk_entry_get_text(GTK_ENTRY (env.carName)));
-        strcat(query, "' AND '");
-        strcat(query, gtk_entry_get_text(GTK_ENTRY (env.carDate)));
-        strcat(query, "'>=NOW()");
+        strcat(query, "' AND DATE_FORMAT(debut, \"%d/%m/%Y\")>= '");
+        strcat(query, Tdate);
+        strcat(query, "' AND DATE_FORMAT(debut, \"%d/%m/%Y\")<=DATE_ADD('");
+        strcat(query, Tdate);
+        strcat(query,"', INTERVAL 7 DAY)");
         mysql_query(&mysql, query);
-        printf("%s\n", query);
+        printf("%s", query);
 
         info_all = mysql_store_result(&mysql);
         if(info_all){
@@ -297,18 +274,15 @@ void searchPlanning(GtkButton *search, gpointer tab){
         }
 
         recupDate = try[0];
-        structDate = orgaDate(recupDate);
-        Tdate = printDate();
+        //structDate = orgaDate(recupDate);
+        /*Tdate = printDate();
         if(structDate != Tdate)
             printf("1");
         else
-            printf("0");
+            printf("0");*/
         mysql_close(&mysql);
     }
 
-   // if(try[0] != ){
-
-    //}
 }
 
 char *orgaDate(char *recupDate){
@@ -354,11 +328,11 @@ char *orgaDate(char *recupDate){
     printf("month: %s\n", stockDate[1]);
     printf("day: %s\n", stockDate[2]);
 
-    strcpy(totalDate, stockDate[2]);
-    strcat(totalDate, "/");
+    strcpy(totalDate, stockDate[0]);
+    strcat(totalDate, "-");
     strcat(totalDate, stockDate[1]);
-    strcat(totalDate, "/");
-    strcat(totalDate, stockDate[0]);
+    strcat(totalDate, "-");
+    strcat(totalDate, stockDate[2]);
     strcat(totalDate, "\n");
 
     printf ("%s", totalDate);
@@ -370,6 +344,7 @@ char *orgaDate(char *recupDate){
                  gint width,
                  gint height);
     return totalDate;*/
+    return totalDate;
 
 }
 /*
@@ -431,4 +406,29 @@ int connec_bdd(MYSQL *mysql){
     }
 
     return 0;
+}*/
+
+/*
+int getNumberVehicule(){
+    FILE *fp;
+    char buffer;
+    int count;
+
+    fp = fopen(RAPPORTFILENAME, "rb");
+
+    if(fp)
+    {
+        count = 0;
+        while(fread(&buffer, sizeof(char), 1, fp), !feof(fp))
+        {
+            if(buffer == '\n')
+                count++;
+        }
+
+        fclose(fp);
+        return count;
+    }
+
+    fclose(fp);
+    return -1;
 }*/
