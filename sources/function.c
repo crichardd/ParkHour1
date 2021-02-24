@@ -244,45 +244,42 @@ void searchPlanning(GtkButton *search, gpointer tab){
     char query[256];
     MYSQL mysql;
     MYSQL_RES *info_all;
-    MYSQL_ROW try;
+    MYSQL_ROW row;
     char *Tdate;
-    char *structDate;
-    char * recupDate ;
+    GdkRGBA color;
 
     Tdate = orgaDate( (char *)gtk_entry_get_text(GTK_ENTRY (env.carDate)));
-    printf("%s", Tdate);
 
-    if(connec_bdd(&mysql)){
-        printf("%s", Tdate);
-        strcpy(query, "SELECT debut, fin FROM deplacement WHERE vehicule = '");
-        strcat(query, gtk_entry_get_text(GTK_ENTRY (env.carName)));
-        strcat(query, "' AND debut>= '");
-        strcat(query, Tdate);
-        strcat(query, "' AND debut<=DATE_ADD('");
-        strcat(query, Tdate);
-        strcat(query,"', INTERVAL 7 DAY)");
-        mysql_query(&mysql, query);
-        printf("%s", query);
+    if(Tdate) {
+        if (connec_bdd(&mysql)) {
+            printf("%s", Tdate);
+            strcpy(query, "SELECT debut, fin FROM deplacement WHERE vehicule = '");
+            strcat(query, gtk_entry_get_text(GTK_ENTRY (env.carName)));
+            strcat(query, "' AND debut>= '");
+            strcat(query, Tdate);
+            strcat(query, "' AND debut<=DATE_ADD('");
+            strcat(query, Tdate);
+            strcat(query, "', INTERVAL 6 DAY)");
+            mysql_query(&mysql, query);
+            printf("%s", query);
 
-        info_all = mysql_store_result(&mysql);
-        if(info_all){
-            try = mysql_fetch_row( info_all);
-            if(try){
-                printf("\n%s\n", try[0]);
-                gtk_label_set_text(env.test, try[0]);
+            info_all = mysql_store_result(&mysql);
+            if (info_all) {
+                while(row = mysql_fetch_row( info_all )){
+                    printf("\n%s\n", row[0]);
+                    color.red = 1;
+                    color.blue = ((109.*100.)/255.)/100.;
+                    color.green = ((78.*100.)/255.)/100.;
+                    color.alpha = 1;
+                    gtk_widget_override_background_color(GTK_WIDGET(env.test), GTK_STATE_FLAG_NORMAL, &color);
+                    gtk_label_set_text(env.test, row[0]);
+                }
             }
+
+            //srecupDate = try[0];
+            mysql_close(&mysql);
         }
-
-        recupDate = try[0];
-        //structDate = orgaDate(recupDate);
-        /*Tdate = printDate();
-        if(structDate != Tdate)
-            printf("1");
-        else
-            printf("0");*/
-        mysql_close(&mysql);
     }
-
 }
 
 char *orgaDate(char *recupDate){
@@ -347,10 +344,6 @@ char *orgaDate(char *recupDate){
     return totalDate;
 
 }
-/*
-    GtkWidget *vehicule = ((GtkWidget**) tab)[0];
-    GtkWidget *date = ((GtkWidget**) tab)[1];
-*/
 
 void gladeLoader(){
 
