@@ -31,6 +31,8 @@ typedef struct {
     GtkLabel        *test;
     GtkWidget        *plannigPlage;
 
+    GtkWidget       ***listCheckbox;
+
 } gtkStruct;
 
 void NextFile(GtkButton button, gpointer user_data);
@@ -45,5 +47,11 @@ int getNumberVehicule();
 G_MODULE_EXPORT void exitApp();
 void searchPlanning(GtkButton *search, gpointer tab);
 char *orgaDate(char *recupDate);
+char **getDateData(char *recupDate);
+void updatePlanning(char *id, char *matricule, char *date, int start, int end);
+void createPlanning(char ***tabReservedPlage, int nPlage);
+G_MODULE_EXPORT char ***getReservedPlage(GtkWidget *widget);
+void setUnavailablePlage(char **dateData, char *txtBegin, char *txtEnd, int startDay);
+
 
 #endif //PARKHOUR_FUNCTION_H

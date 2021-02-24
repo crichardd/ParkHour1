@@ -141,9 +141,9 @@ void futureMove(GtkWidget *matricule){
     data = malloc(sizeof(char)*256);
 
     if(connec_bdd(&mysql)){
-        strcpy(query, "SELECT debut, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE debut>NOW() AND participant.matricule = ");
+        strcpy(query, "SELECT datePlage, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE datePlage>NOW() AND participant.matricule = ");
         strcat(query, gtk_entry_get_text(GTK_ENTRY (matricule)));
-        strcat(query, " ORDER BY debut ASC");
+        strcat(query, " ORDER BY datePlage ASC");
         mysql_query(&mysql, query);
 
         info_all = mysql_store_result(&mysql);
@@ -175,9 +175,9 @@ void ancienMove(GtkWidget *matricule){
     data = malloc(sizeof(char)*256);
 
     if(connec_bdd(&mysql)){
-        strcpy(query, "SELECT debut, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE debut<NOW() AND participant.matricule = ");
+        strcpy(query, "SELECT datePlage, vehicule FROM deplacement INNER JOIN participant ON participant.deplacement = deplacement.matricule WHERE datePlage<NOW() AND participant.matricule = ");
         strcat(query, gtk_entry_get_text(GTK_ENTRY (matricule)));
-        strcat(query, " ORDER BY debut ASC");
+        strcat(query, " ORDER BY datePlage ASC");
         mysql_query(&mysql, query);
 
         info_all = mysql_store_result(&mysql);
@@ -247,17 +247,42 @@ void searchPlanning(GtkButton *search, gpointer tab){
     MYSQL_ROW row;
     char *Tdate;
     GdkRGBA color;
+    char id[10];
+    char iTxt[3];
+    char jTxt[3];
 
     Tdate = orgaDate( (char *)gtk_entry_get_text(GTK_ENTRY (env.carDate)));
+
+    env.listCheckbox = malloc(sizeof(GtkWidget **) * 7);
+    for(int i = 0; i < 7; i++)
+        env.listCheckbox[i] = malloc(sizeof(GtkWidget *) * 14);
+
+    env.listCheckbox = g_object_ref(GTK_WIDGET(gtk_builder_get_object(env.builder, "planningPlage")));
+    for(int i = 0; i < 7; i++)
+    {
+        for(int j = 0; j < 14; j++)
+        {
+            itoa(i, iTxt, 10);
+            itoa(j, jTxt, 10);
+
+            strcpy(id, "case");
+            strcat(id, jTxt);
+            strcat(id, "_");
+            strcat(id, iTxt);
+            printf("id: %s\n", id);
+
+            env.listCheckbox[i][j] = g_object_ref(GTK_WIDGET(gtk_builder_get_object(env.builder, id)));
+        }
+    }
 
     if(Tdate) {
         if (connec_bdd(&mysql)) {
             printf("%s", Tdate);
-            strcpy(query, "SELECT debut, fin FROM deplacement WHERE vehicule = '");
+            strcpy(query, "SELECT datePlage, fin FROM deplacement WHERE vehicule = '");
             strcat(query, gtk_entry_get_text(GTK_ENTRY (env.carName)));
-            strcat(query, "' AND debut>= '");
+            strcat(query, "' AND datePlage>= '");
             strcat(query, Tdate);
-            strcat(query, "' AND debut<=DATE_ADD('");
+            strcat(query, "' AND datePlage<=DATE_ADD('");
             strcat(query, Tdate);
             strcat(query, "', INTERVAL 6 DAY)");
             mysql_query(&mysql, query);
@@ -267,12 +292,12 @@ void searchPlanning(GtkButton *search, gpointer tab){
             if (info_all) {
                 while(row = mysql_fetch_row( info_all )){
                     printf("\n%s\n", row[0]);
-                    color.red = 1;
+                   /* color.red = 1;
                     color.blue = ((109.*100.)/255.)/100.;
                     color.green = ((78.*100.)/255.)/100.;
                     color.alpha = 1;
                     gtk_widget_override_background_color(GTK_WIDGET(env.test), GTK_STATE_FLAG_NORMAL, &color);
-                    gtk_label_set_text(env.test, row[0]);
+                    gtk_label_set_text(env.test, row[0]);*/
                 }
             }
 
@@ -285,12 +310,11 @@ void searchPlanning(GtkButton *search, gpointer tab){
 char *orgaDate(char *recupDate){
 
     printf("%s\n", recupDate);
-    char *nextSeparator;
     int positionRecupDate;
-    int year;
     char stockDate[3][5];
+    char **variable;
     int dateCategory;
-    char * totalDate;
+    char *totalDate;
     totalDate = malloc(sizeof(char)*256);
 
     positionRecupDate = 0;
@@ -301,7 +325,6 @@ char *orgaDate(char *recupDate){
     recupDate[positionRecupDate] = '\0';
 
     printf("%s\n", recupDate);
-
     dateCategory = 0;
     positionRecupDate = 0 ;
 
@@ -311,7 +334,6 @@ char *orgaDate(char *recupDate){
             strncpy(stockDate[dateCategory], recupDate, positionRecupDate);
             stockDate[dateCategory][positionRecupDate] = '\0';
             strcpy(recupDate, recupDate + positionRecupDate + 1);
-
             positionRecupDate = 0;
             dateCategory++;
         }
@@ -330,20 +352,168 @@ char *orgaDate(char *recupDate){
     strcat(totalDate, stockDate[1]);
     strcat(totalDate, "-");
     strcat(totalDate, stockDate[0]);
-    strcat(totalDate, "\n");
 
-    printf ("%s", totalDate);
-/*
-    gtk_grid_attach(env.plannigPlage,
-                 GtkWidget *child,
-                 gint left,
-                 gint top,
-                 gint width,
-                 gint height);
-*/
+    //variable = getDateData("2021-03-03");
+
+    printf ("%s\n", totalDate);
+  //  printf ("%s\n", variable);
+
     return totalDate;
-
 }
+/*
+char **getDateData(char *recupDate)
+{
+    char **stockDate;
+    int positionRecupDate;
+    int dateCategory;
+
+    positionRecupDate = 0;
+    dateCategory = 0;
+
+    stockDate = malloc(sizeof(char *) * 3);
+    for(int i = 0; i < 3; i++)
+        stockDate[i] = malloc(sizeof(char) * 5);
+
+    while(recupDate[positionRecupDate] != '\0')
+    {
+        if(recupDate[positionRecupDate] == '-')
+        {
+            strncpy(stockDate[dateCategory], recupDate, positionRecupDate);
+            stockDate[dateCategory][positionRecupDate] = '\0';
+            strcpy(recupDate, recupDate + positionRecupDate + 1);
+
+            positionRecupDate = 0;
+            dateCategory++;
+        }
+        positionRecupDate++;
+    }
+
+    strncpy(stockDate[dateCategory], recupDate, positionRecupDate);
+    stockDate[dateCategory][positionRecupDate] = '\0';
+
+    return stockDate;
+}
+
+void setUnavailablePlage(char **dateData, char *txtBegin, char *txtEnd, int startDay){
+    int begin;
+    int end;
+    int day;
+    int iButton;
+
+    begin = atoi(txtBegin);
+    end = atoi(txtEnd);
+    day = atoi(dateData[2]);
+    iButton = 0;
+
+    while(iButton <= end - begin)
+    {
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(env.listCheckbox[day - startDay][begin - 7 + iButton]), TRUE);
+        gtk_widget_set_sensitive(GTK_WIDGET(env.listCheckbox[day - startDay][begin - 7 + iButton]), FALSE);
+        iButton++;
+    }
+
+    return;
+}
+
+G_MODULE_EXPORT char ***getReservedPlage(GtkWidget *widget){
+    char id[5];
+    char matricule[10];
+    char date[11];
+    char txtDay[3];
+    char txtMonth[3];
+    char txtYear[5];
+    int start;
+    int day = 23;
+    int month = 2;
+    int year = 2021;
+
+    strcpy(id, "4");
+    strcpy(matricule, "GB-123-FR");
+
+    printf("chk\n");
+
+    for(int i = 0; i < 7; i++)
+    {
+        for(int j = 0; j < 14; j++)
+        {
+            if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(env.listCheckbox[i][j])) && gtk_widget_get_sensitive(GTK_WIDGET(env.listCheckbox[i][j])))
+            {
+                start = j;
+
+                while(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(env.listCheckbox[i][j])) && gtk_widget_get_sensitive(GTK_WIDGET(env.listCheckbox[i][j])) && j < 14)
+                    j++;
+
+                itoa(day + i, txtDay, 10);
+                itoa(month, txtMonth, 10);
+                itoa(year, txtYear, 10);
+
+                strcpy(date, txtYear);
+                strcat(date, "-");
+                strcat(date, txtMonth);
+                strcat(date, "-");
+                strcat(date, txtDay);
+
+                updatePlanning(id, matricule, date, start + 7, j - 1 + 7);
+            }
+        }
+    }
+}
+
+
+
+void createPlanning(char ***tabReservedPlage, int nPlage){
+    char **dateData;
+    int startDay;
+
+    for(int i = 0; i < nPlage; ++i)
+    {
+        dateData = getDateData(tabReservedPlage[i][0]);
+
+        if(!i)
+            startDay = atoi(dateData[2]);
+
+        printf("year: %s\n", dateData[0]);
+        printf("month: %s\n", dateData[1]);
+        printf("day: %s\n", dateData[2]);
+
+        setUnavailablePlage(dateData, tabReservedPlage[i][1], tabReservedPlage[i][2], startDay);
+    }
+
+    return;
+}
+
+void updatePlanning(char *id, char *matricule, char *date, int start, int end){
+    MYSQL mysql;
+    char query[512];
+    char txtStart[3];
+    char txtEnd[3];
+
+    itoa(start, txtStart, 10);
+    itoa(end, txtEnd, 10);
+
+    if(connec_bdd(&mysql))
+    {
+        strcpy(query,"INSERT INTO tmp (idUser, matricule, plageDate, begin, end) VALUES ('");
+        strcat(query, id);
+        strcat(query,"', '");
+        strcat(query, matricule);
+        strcat(query,"', '");
+        strcat(query, date);
+        strcat(query,"', '");
+        strcat(query, txtStart);
+        strcat(query,"', '");
+        strcat(query, txtEnd);
+        strcat(query,"')");
+
+        printf("%s\n", query);
+
+        mysql_query(&mysql, query);
+
+        mysql_close(&mysql);
+    }
+
+    return;
+}*/
 
 void gladeLoader(){
 

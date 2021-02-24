@@ -79,6 +79,7 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="margin-bottom">11</property>
                 <property name="label" translatable="yes">
 Est-ce que vous voulez bien réserver les dates suivantes : 
 </property>
@@ -93,12 +94,48 @@ Est-ce que vous voulez bien réserver les dates suivantes :
               <object class="GtkLabel" id="Recap">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">15</property>
                 <property name="label" translatable="yes">label</property>
               </object>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Nombre de kilomètre :</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -118,6 +155,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <property name="margin-top">15</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -131,6 +169,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <property name="margin-top">14</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -151,8 +190,8 @@ Est-ce que vous voulez bien réserver les dates suivantes :
   <object class="GtkWindow" id="window_index">
     <property name="can-focus">False</property>
     <property name="window-position">center</property>
-    <property name="default-width">700</property>
-    <property name="default-height">550</property>
+    <property name="default-width">900</property>
+    <property name="default-height">500</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -212,6 +251,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
@@ -247,6 +287,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
@@ -618,7 +659,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case0_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -631,7 +672,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case0_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -644,7 +685,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case0_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -657,7 +698,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case0_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -670,7 +711,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case0_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -683,7 +724,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case0_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -696,7 +737,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case0_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -709,7 +750,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case1_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -722,7 +763,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case2_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -735,7 +776,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case3_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -748,7 +789,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case4_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -761,7 +802,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case5_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -774,7 +815,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case6_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -787,7 +828,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case7_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -800,7 +841,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case8_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -813,7 +854,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case9_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -826,7 +867,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case10_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -839,7 +880,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case11_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -852,7 +893,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case12_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -866,7 +907,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case13_0">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -879,7 +920,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case1_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -892,7 +933,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case1_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -905,7 +946,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case1_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -918,7 +959,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case1_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -931,7 +972,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case1_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -944,7 +985,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case1_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -957,7 +998,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case2_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -970,7 +1011,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case3_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -983,7 +1024,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case4_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -996,7 +1037,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case5_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1009,7 +1050,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case6_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1022,7 +1063,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case7_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1035,7 +1076,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case7_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1048,7 +1089,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case6_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1061,7 +1102,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case2_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1074,7 +1115,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case13_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1087,7 +1128,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case12_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1100,7 +1141,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case11_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1113,7 +1154,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case9_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1126,7 +1167,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case8_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1139,7 +1180,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case10_1">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1152,7 +1193,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case2_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1165,7 +1206,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case2_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1178,7 +1219,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case2_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1191,7 +1232,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case11_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1204,7 +1245,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case3_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1217,7 +1258,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case13_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1230,7 +1271,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case13_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1243,7 +1284,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case13_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1256,7 +1297,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case13_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1269,7 +1310,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case13_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1282,7 +1323,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case4_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1295,7 +1336,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case5_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1308,7 +1349,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case6_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1321,7 +1362,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case9_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1334,7 +1375,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case5_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1347,7 +1388,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case7_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1360,7 +1401,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case8_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1373,7 +1414,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case11_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1386,7 +1427,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case10_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1399,7 +1440,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case12_6">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1412,7 +1453,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case3_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1425,7 +1466,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case4_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1438,7 +1479,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case5_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1451,7 +1492,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case6_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1464,7 +1505,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case9_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1477,7 +1518,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case8_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1490,7 +1531,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case11_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1503,7 +1544,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case10_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1516,7 +1557,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case12_3">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1529,7 +1570,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case3_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1542,7 +1583,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case4_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1555,7 +1596,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case4_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1568,7 +1609,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case8_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1581,7 +1622,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case5_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1594,7 +1635,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case6_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1607,7 +1648,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case7_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1620,7 +1661,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case10_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1633,7 +1674,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case9_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1646,7 +1687,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case11_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1659,7 +1700,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case12_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1672,7 +1713,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case9_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1685,7 +1726,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case8_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1698,7 +1739,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case6_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1711,7 +1752,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case7_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1724,7 +1765,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case12_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1737,7 +1778,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case11_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1750,7 +1791,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case10_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1763,7 +1804,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case4_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1776,7 +1817,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case3_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1789,7 +1830,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case5_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1802,7 +1843,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case8_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1815,7 +1856,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case12_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1828,7 +1869,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case10_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1841,7 +1882,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case9_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1854,7 +1895,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case7_5">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1867,7 +1908,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case2_4">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1880,7 +1921,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 </child>
                 <child>
                   <object class="GtkCheckButton" id="case3_2">
-                    <property name="label" translatable="yes">checkbutton</property>
+                    <property name="label" translatable="yes">Reserver</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">False</property>
@@ -1907,9 +1948,10 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <property name="margin-bottom">118</property>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">2</property>
               </packing>
@@ -1927,8 +1969,8 @@ Est-ce que vous voulez bien réserver les dates suivantes :
   <object class="GtkWindow" id="window_main">
     <property name="can-focus">False</property>
     <property name="window-position">center</property>
-    <property name="default-width">700</property>
-    <property name="default-height">550</property>
+    <property name="default-width">900</property>
+    <property name="default-height">500</property>
     <signal name="destroy" handler="on_window_main_destroy" swapped="no"/>
     <child>
       <object class="GtkBox">
