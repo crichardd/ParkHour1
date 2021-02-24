@@ -256,9 +256,9 @@ void searchPlanning(GtkButton *search, gpointer tab){
         printf("%s", Tdate);
         strcpy(query, "SELECT debut, fin FROM deplacement WHERE vehicule = '");
         strcat(query, gtk_entry_get_text(GTK_ENTRY (env.carName)));
-        strcat(query, "' AND DATE_FORMAT(debut, \"%d/%m/%Y\")>= '");
+        strcat(query, "' AND debut>= '");
         strcat(query, Tdate);
-        strcat(query, "' AND DATE_FORMAT(debut, \"%d/%m/%Y\")<=DATE_ADD('");
+        strcat(query, "' AND debut<=DATE_ADD('");
         strcat(query, Tdate);
         strcat(query,"', INTERVAL 7 DAY)");
         mysql_query(&mysql, query);
@@ -328,11 +328,11 @@ char *orgaDate(char *recupDate){
     printf("month: %s\n", stockDate[1]);
     printf("day: %s\n", stockDate[2]);
 
-    strcpy(totalDate, stockDate[0]);
+    strcpy(totalDate, stockDate[2]);
     strcat(totalDate, "-");
     strcat(totalDate, stockDate[1]);
     strcat(totalDate, "-");
-    strcat(totalDate, stockDate[2]);
+    strcat(totalDate, stockDate[0]);
     strcat(totalDate, "\n");
 
     printf ("%s", totalDate);
@@ -343,7 +343,7 @@ char *orgaDate(char *recupDate){
                  gint top,
                  gint width,
                  gint height);
-    return totalDate;*/
+*/
     return totalDate;
 
 }

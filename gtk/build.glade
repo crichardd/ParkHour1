@@ -350,7 +350,7 @@ Est-ce que vous voulez bien réserver les dates suivantes :
                   <object class="GtkEntry" id="carDate">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
-                    <property name="placeholder-text" translatable="yes">Date</property>
+                    <property name="placeholder-text" translatable="yes">Date : JJ-MM-AAAA</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
